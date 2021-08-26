@@ -1,0 +1,2 @@
+# dotfiles.nvim
+Neovim configuration

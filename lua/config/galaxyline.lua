@@ -155,10 +155,13 @@ gls.right[2] = {
 gls.right[3] = {
   ViModeIndicatorRight = {
     provider = function()
-      vim.cmd("hi GalaxyViModeIndicatorRight guifg=" .. mode(2))
-      return "🮉"
+      -- vim.cmd("hi GalaxyViModeIndicatorRight guifg=" .. mode(2))
+      -- return "🮉"
+      vim.cmd("hi GalaxyViModeIndicatorRight guifg=" .. mode(2) .. " guibg=" .. mode(2))
+      return " "
     end,
-    highlight = { colors.gray3, colors.black1 },
+    -- highlight = { colors.gray3, colors.black1 },
+    highlight = { colors.gray3, colors.gray3 },
   },
 }
 

@@ -122,13 +122,25 @@ local lua_settings = {
 }
 
 -- yaml language server settings
+
+local yamlSchemas = vim.empty_dict()
+if (vim.env.HOSTNAME == 'FDVMPRDLIN1' and string.match(vim.env.PWD, '/tests/ggc$')) then
+  yamlSchemas = {
+    [vim.env.PWD .. '/testSpec.schema.jsonc'] = {'*.yml', '*.yaml'},
+  }
+end
+
 local yaml_settings = {
   redhat = {
     telemetry = {
       enabled = false,
     },
   },
+  yaml = {
+    schemas = yamlSchemas,
+  },
   --[[
+  -- Examples
   yaml = {
     -- Globally set additionalProperties to false for all objects. So if its true,
     -- no extra properties are allowed inside yaml.
@@ -165,7 +177,6 @@ local yaml_settings = {
     -- Associate schemas to YAML files in the current workspace
     -- glob pattern
     --'../relative/path/schema.json': ['/*.yaml'],
-    --'testSpec.schema.jsonc': ['*.yml', '*.yaml'],
     schemas = vim.empty_dict(),
     trace = {
       -- Traces the communication between VSCode and the YAML language service.
@@ -216,7 +227,11 @@ local function setup_servers()
     end
 
     if server == 'yamlls' then
-      config.cmd = {'yaml-language-server', '--stdio'}
+      if (vim.env.HOSTNAME == 'FDVMPRDLIN1') then
+        config.cmd = {vim.env.HOME..'/.yarn/bin/yaml-language-server', '--stdio'}
+      else
+        config.cmd = {'yaml-language-server', '--stdio'}
+      end
       config.filetypes = {'yaml'}
       config.settings = yaml_settings
     end

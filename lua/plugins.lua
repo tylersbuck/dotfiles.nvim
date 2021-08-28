@@ -27,9 +27,6 @@
 -- Loads opt plugin immediately
 --   :PackerLoad completion-nvim ale
 
-local packer = require('packer')
-local use = packer.use
-
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
@@ -49,6 +46,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute 'packadd packer.nvim'
   -- TODO: initial PackerSync / PackerInstall / PackerCompile ?
 end
+
+local packer = require('packer')
+local use = packer.use
 
 -- Configure packer ------------------------------------------------------------
 
@@ -222,7 +222,7 @@ return packer.startup(function()
     'neovim/nvim-lspconfig',
     -- TODO: nvim-lspinstall for auto-install
     --after = 'nvim-lspinstall',
-    ft = {'lua'},
+    ft = {'lua', 'yaml'},
     config = function() require('config.lspconfig') end,
   }
 
@@ -230,7 +230,7 @@ return packer.startup(function()
   use {
     -- Keep an eye on 'hrsh7th/nvim-cmp', it's successor
     'hrsh7th/nvim-compe',
-    ft = {'lua'},
+    ft = {'lua', 'yaml'},
     -- load compe in insert mode only
     event = 'InsertEnter',
     config = function() require('config.compe') end,
@@ -254,7 +254,7 @@ return packer.startup(function()
   -- Icons for symbol types in autocomplete list
   use {
     'onsails/lspkind-nvim',
-    ft = {'lua'},
+    ft = {'lua', 'yaml'},
     config = function() require('config.lspkind') end,
   }
 

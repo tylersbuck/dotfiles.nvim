@@ -2,7 +2,7 @@
 
 " Vim colorscheme based on Monokai Pro (Spectrum filter)
 "
-" Requires a 256 color terminal and if using term colors, requires extended 
+" Requires a 256 color terminal and if using term colors, requires extended
 " colors 16-20 defined to fill out a spectrum of shades similar to the base.
 " See the color dictionaries defined in 'Setup & initializtion' for details
 " on which color number each shade should be assigned.
@@ -16,8 +16,8 @@
 " Colorscheme name
 let g:colors_name = "tbck"
 
-" Define color dictionaries for GUI and cterm 
-" Higher numbers = further from base, higher constrast. 
+" Define color dictionaries for GUI and cterm
+" Higher numbers = further from base, higher constrast.
 " e.g. black2 is blackest black, white2 is whitest white, and gray5 is the gray
 " with the highest contrast to base.
 let s:gui = {
@@ -127,7 +127,7 @@ endif
 " SpecialComment  Special
 " Debug           Special
 
-" Normal should be the first highlight defined and must not use reverse, 
+" Normal should be the first highlight defined and must not use reverse,
 " fg, or bg.
 call Hi("Normal", s:gui["white2"], "", s:cterm["white2"], "", "", "")
 
@@ -137,7 +137,7 @@ call Hi("PreProc", s:gui["magenta"], "", s:cterm["magenta"], "", "none", "")
 call Hi("Special", s:gui["magenta"], "", s:cterm["magenta"], "", "none", "")
 call Hi("Statement", s:gui["red"], "", s:cterm["red"], "", "none", "")
 call Hi("Type", s:gui["cyan"], "", s:cterm["cyan"], "", "none", "")
- 
+
 call Hi("Boolean", s:gui["magenta"], "", s:cterm["magenta"], "", "none", "")
 call Hi("Character", s:gui["yellow"], "", s:cterm["yellow"], "", "none", "")
 call Hi("Conditional", s:gui["red"], "", s:cterm["red"], "", "none", "")
@@ -246,7 +246,7 @@ call Hi("Typedef", s:gui["orange"], "", s:cterm["orange"], "", "none", "")
 highlight link vimFunction Function
 
 " Make comment 'titles' appear as normal comments
-" Titles are uppercase letters with a colon at the start of a comment 
+" Titles are uppercase letters with a colon at the start of a comment
 " e.g. `TITLE:`
 highlight link vimCommentTitle Comment
 
@@ -254,7 +254,7 @@ highlight link vimCommentTitle Comment
 " highlight link vimHiClear Function
 " highlight link vimHiLink Function
 
-" Highlight attributes 
+" Highlight attributes
 highlight link vimHiTerm Normal
 
 " Highlight attribute values
@@ -278,10 +278,16 @@ highlight link luaAttributeBrackets luaBracket
 highlight link luaParen Delimiter
 highlight link luaParens luaParen
 
-" Treesitter lua 
+" Treesitter lua
 highlight link luaTSConstructor Delimiter
 highlight link luaTSProperty Normal
 highlight link luaTSField Normal
+
+"}}}
+" Yaml syntax {{{3
+
+" Treesitter yaml
+highlight link yamlTSField Structure
 
 "}}}
 

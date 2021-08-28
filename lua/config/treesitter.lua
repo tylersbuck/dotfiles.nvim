@@ -12,15 +12,23 @@ require('config.indent-blankline-treesitter')
 --vim.g.foldmethod = expr
 --vim.g.foldexpr = nvim_treesitter#foldexpr()
 
+local ensure_installed = {
+  'bash', 'css', 'dockerfile', 'go', 'html', 'javascript', 'json',
+  'lua', 'rust', 'scss', 'typescript', 'yaml',
+}
+
+if (vim.env.HOSTNAME == 'FDVMPRDLIN1') then
+  ensure_installed = {
+    'bash', 'dockerfile', 'json', 'lua', 'yaml',
+  }
+end
+
 treesitter.setup {
   -- If parser is not installed for the listed filetypes and a file of that type
   -- is opened, the parser will be automatically installed. Upon re-opening the
   -- file treesitter will be enabled.
   -- TODO: Anyway to have it enabled without re-opening?
-  ensure_installed = {
-    'bash', 'css', 'dockerfile', 'go', 'html', 'javascript', 'json',
-    'lua', 'rust', 'scss', 'typescript', 'yaml'
-  },
+  ensure_installed = ensure_installed,
   highlight = {
     enable = true
   },

@@ -7,15 +7,31 @@ if not present then
   return
 end
 
--- TODO: supergrep
-vim.api.nvim_set_keymap(
-  'n', ' g',
-  [[<cmd>lua require('telescope.builtin').live_grep{ search_dirs = {vim.loop.cwd(), '/home/tbuck/.config/colors'} }<cr>]],
-  {noremap = true}
-)
+local vimgrep_command = 'rg'
+
+if (vim.env.HOSTNAME == 'FDVMPRDLIN1') then
+  -- Use local rg
+  local vimgrep_command = vim.env.HOME .. '/.local/bin/rg'
+
+  -- Ubergrep
+  vim.api.nvim_set_keymap(
+    'n', ' g',
+    [[ <cmd>lua require('telescope.builtin').live_grep { search_dirs = { vim.loop.cwd(), '/data/source/' .. vim.env.BRANCH } }<CR> ]],
+    {noremap = true}
+  )
+end
 
 telescope.setup({
   defaults = {
+    vimgrep_arguments = {
+      vimgrep_command,
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
     --prompt_prefix = "> ",
     --selection_caret = "> ",
     --entry_prefix = "  ",

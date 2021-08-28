@@ -60,6 +60,12 @@ opt.fillchars = { eob = ' ', fold = ' ', }
 -- Left margin of numbers (relative number is still aligned to the left)
 -- opt.numberwidth = 16
 
+-- Set undercurl
+vim.cmd [[
+  let &t_Cs="\e[4:3m"
+  let &t_Ce="\e[4:0m"
+]]
+
 --}}}
 ---------------------------------------------------------------------------------
 -- Mappings {{{1
@@ -174,6 +180,10 @@ opt.backspace= 'indent,eol,start'
 -- While this behaviour deviates from that of Vi, it does what most users
 -- coming from other editors would expect.
 opt.startofline = false
+
+-- More natural split directions
+opt.splitbelow = true
+opt.splitright = true
 
 -- Instead of failing a command because of unsaved changes, instead raise a
 -- dialogue asking if you wish to save changed files.

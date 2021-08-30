@@ -31,8 +31,8 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 local sign_char = ''
 vim.fn.sign_define('LspDiagnosticsSignHint', {text = sign_char})
 vim.fn.sign_define('LspDiagnosticsSignInformation', {text = sign_char})
-vim.fn.sign_define('LspDiagnosticsSignWarning', {text = sign_char})
-vim.fn.sign_define('LspDiagnosticsSignError', {text = sign_char})
+vim.fn.sign_define('LspDiagnosticsSignWarning', {text = ''})
+vim.fn.sign_define('LspDiagnosticsSignError', {text = ''})
 
 -- Set keymaps per buffer
 local on_attach = function(client, bufnr)

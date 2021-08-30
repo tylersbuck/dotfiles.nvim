@@ -200,7 +200,7 @@ return packer.startup(function()
   -- Git -----------------------------------------------------------------------
 
   -- 'lewis6991/gitsigns.nvim'
-  -- 'TimUntersberger/neogit'
+  -- 'TimUntersberger/neogit'?
 
   -- Git wrapper
   use {
@@ -208,14 +208,21 @@ return packer.startup(function()
     cmd = 'Git',
   }
 
+  -- Git signs and hunk tools
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+    config = function() require('config.gitsigns') end,
+  }
+
   -- LSP -----------------------------------------------------------------------
 
-  -- nvim-lua/lsp-status.nvim
+  -- windwp/nvim-autopairs
+  -- nvim-lua/lsp-status.nvim?
   -- glepnir/lspsaga.nvim?
   -- kosayoda/nvim-lightbulb (lspsaga has lightbulb?)
   -- ray-x/lsp_signature.nvim (lspsaga has sig help?)
-  -- folke/trouble.nvim
-  -- windwp/nvim-autopairs
+  -- folke/trouble.nvim?
 
   -- LSP configuration
   use {
@@ -227,8 +234,8 @@ return packer.startup(function()
   }
 
   -- Completion
+  -- DEPRECATED: Keep an eye on 'hrsh7th/nvim-cmp', compe's successor.
   use {
-    -- Keep an eye on 'hrsh7th/nvim-cmp', it's successor
     'hrsh7th/nvim-compe',
     ft = {'lua', 'yaml'},
     -- load compe in insert mode only

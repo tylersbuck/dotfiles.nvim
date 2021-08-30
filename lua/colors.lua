@@ -3,6 +3,7 @@ return {
   black2        = '#131313',
   black1        = '#191919',
   black0        = '#1d1d1d',
+  -- black0        = '#1e1e1e',
   base          = '#222222',
   gray0         = '#2d2c2d',
   gray1         = '#363537',

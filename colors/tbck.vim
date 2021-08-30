@@ -351,6 +351,7 @@ highlight link lCursor Cursor
 " Status line
 call Hi("StatusLine", s:gui["gray4"], s:gui["black1"], s:cterm["gray4"], s:cterm["black1"], "none", "")
 call Hi("StatusLineNC", s:gui["black1"], "", s:cterm["black1"], "", "strikethrough", "")
+" call Hi("StatusLineNC", s:gui["black1"], "", s:cterm["black1"], "", "underline", "")
 call Hi("StatusLineTerm", s:gui["gray4"], s:gui["black1"], s:cterm["gray4"], s:cterm["black1"], "none", "")
 call Hi("StatusLineTermNC", s:gui["gray4"], s:gui["black1"], s:cterm["gray4"], s:cterm["black1"], "none", "")
 
@@ -449,14 +450,19 @@ call Hi("NvimInternalError", s:gui["red"], s:gui["red"], s:cterm["red"], s:cterm
 "}}}
 " LSP {{{3
 
+let s:hintcolor = "magenta"
+let s:infocolor = "cyan"
+let s:warncolor = "orange"
+let s:errorcolor = "red"
+
 call Hi("LspDiagnosticsDefaultHint", s:gui["magenta"], "", s:cterm["magenta"], "", "", "")
 call Hi("LspDiagnosticsDefaultInformation", s:gui["cyan"], "", s:cterm["cyan"], "", "", "")
-call Hi("LspDiagnosticsDefaultWarning", s:gui["yellow"], "", s:cterm["yellow"], "", "", "")
+call Hi("LspDiagnosticsDefaultWarning", s:gui[s:warncolor], "", s:cterm[s:warncolor], "", "", "")
 call Hi("LspDiagnosticsDefaultError", s:gui["red"], "", s:cterm["red"], "", "", "")
 
 call Hi("LspDiagnosticsUnderlineHint", "", "", "", "", "undercurl", s:gui["magenta"])
 call Hi("LspDiagnosticsUnderlineInformation", "", "", "", "", "undercurl", s:gui["cyan"])
-call Hi("LspDiagnosticsUnderlineWarning", "", "", "", "", "undercurl", s:gui["yellow"])
+call Hi("LspDiagnosticsUnderlineWarning", "", "", "", "", "undercurl", s:gui[s:warncolor])
 call Hi("LspDiagnosticsUnderlineError", "", "", "", "", "undercurl", s:gui["red"])
 
 highlight link LspDiagnosticsVirtualTextHint LspDiagnosticsDefaultHint
@@ -468,6 +474,8 @@ highlight link LspDiagnosticsVirtualTextError LspDiagnosticsDefaultError
 call Hi("LspReferenceText", "", s:gui["gray2"], "", s:cterm["gray2"], "", "")
 highlight link LspReferenceWrite LspReferenceText
 highlight link LspReferenceRead LspReferenceText
+
+unlet s:hintcolor s:infocolor s:warncolor s:errorcolor
 
 "}}}
 " indent-blankline {{{3
@@ -482,10 +490,10 @@ highlight link LspReferenceRead LspReferenceText
 "}}}
 " Telescope {{{3
 
-call Hi("TelescopeBorder", s:gui["gray4"], "", s:cterm["gray4"], "", "", "")
+call Hi("TelescopeBorder", s:gui["gray5"], "", s:cterm["gray5"], "", "", "")
 call Hi("TelescopePromptPrefix", s:gui["cyan"], "", s:cterm["cyan"], "", "", "")
-call Hi("TelescopeSelection", "", s:gui["gray1"], "", s:cterm["gray1"], "", "")
-call Hi("TelescopeSelectionCaret", s:gui["yellow"], "", s:cterm["yellow"], "", "", "")
+call Hi("TelescopeSelection", "", s:gui["gray2"], "", s:cterm["gray2"], "", "")
+call Hi("TelescopeSelectionCaret", s:gui["yellow"], s:gui["gray2"], s:cterm["yellow"], s:cterm["gray2"], "", "")
 call Hi("TelescopeMatching", "", "", "", "", "undercurl", s:gui["magenta"])
 
 "}}}
@@ -520,6 +528,14 @@ call Hi("LightspeedMaskedChar", s:gui["gray4"], "", s:cterm["gray4"], "", "under
 call Hi("LightspeedUnlabeledMatch", s:gui["gray4"], "", s:cterm["gray4"], "", "underline", "")
 call Hi("LightspeedPendingOpArea", s:gui["red"], "", s:cterm["red"], "", "strikethrough", "")
 call Hi("LightspeedPendingChangeOpArea", s:gui["orange"], "", s:cterm["orange"], "", "strikethrough", "")
+
+"}}}
+" Gitsigns {{{3
+
+call Hi("GitSignsAdd", s:gui["green"], "", s:cterm["green"], "", "", "")
+call Hi("GitSignsDelete", s:gui["red"], "", s:cterm["red"], "", "", "")
+call Hi("GitSignsChange", s:gui["orange"], "", s:cterm["orange"], "", "", "")
+
 
 "}}}
 

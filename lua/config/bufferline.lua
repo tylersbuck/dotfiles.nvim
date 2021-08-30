@@ -37,12 +37,21 @@ vim.api.nvim_set_keymap(
 --     return buf_a.id < buf_b.id
 --   end)<CR>
 
+local colorscheme = {
+  base_bg = { attribute = 'bg', highlight = 'StatusLine', },
+  base_fg = { attribute = 'fg', highlight = 'MsgArea', },
+  weak_fg = { attribute = 'fg', highlight = 'Comment', },
+  item_bg = { attribute = 'bg', highlight = 'Pmenu', },
+  item_visible_fg = { attribute = 'fg', highlight = 'Conceal', },
+  item_selected_bg = { attribute = 'bg', highlight = 'PmenuSel', },
+  item_selected_fg = { attribute = 'fg', highlight = 'PmenuSel', },
+}
 
 bufferline.setup {
   options = {
     always_show_bufferline = false,
     -- 'slant' | 'thick' | 'thin' | { 'any', 'any' },
-    separator_style = 'slant',
+    separator_style = 'thin',
     diagnostics = 'nvim_lsp',
     -- count is an integer representing total count of errors
     -- level is a string 'error' | 'warning'
@@ -129,201 +138,197 @@ bufferline.setup {
   highlights = {
     fill = {
       -- bufferline background
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.base_bg,
       -- highlights trunc markers
-      guifg = { attribute = 'fg', highlight = 'NonText', },
+      guifg = colorscheme.weak_fg,
       gui = 'none',
     },
     tab = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Comment', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_fg,
       gui = 'none',
     },
     tab_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'fg', highlight = 'SpecialComment', },
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.item_selected_fg,
       gui = 'none',
     },
     tab_close = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Comment', },
+      guibg = colorscheme.base_bg,
+      guifg = colorscheme.base_fg,
       gui = 'none',
     },
     -- buffer
     background = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Comment', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_fg,
       gui = 'none',
     },
     buffer_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Conceal', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },
     buffer_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'fg', highlight = 'SpecialComment', },
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.item_selected_fg,
       gui = 'none',
     },
     indicator_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'fg', highlight = 'SpecialComment', },
-      -- guifg = '#222222',
-      gui = 'none',
-    },
-    close_button = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Comment', },
-      gui = 'none',
-    },
-    close_button_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Conceal', },
-      gui = 'none',
-    },
-    close_button_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'fg', highlight = 'SpecialComment', },
-      gui = 'none',
-    },
-    modified = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Comment', },
-      gui = 'none',
-    },
-    modified_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Conceal', },
-      gui = 'none',
-    },
-    modified_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'fg', highlight = 'SpecialComment', },
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.item_selected_fg,
       gui = 'none',
     },
     separator = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'bg', highlight = 'StatusLine', },
-      -- guifg = { attribute = 'fg', highlight = 'Ignore', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_bg,
       gui = 'none',
     },
     separator_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'bg', highlight = 'StatusLine', },
-      -- guifg = { attribute = 'fg', highlight = 'Ignore', },
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.base_bg,
       gui = 'none',
     },
     separator_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'bg', highlight = 'StatusLine', },
-      -- guifg = { attribute = 'fg', highlight = 'Ignore', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_bg,
+      gui = 'none',
+    },
+    close_button = {
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_fg,
+      gui = 'none',
+    },
+    close_button_visible = {
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.item_visible_fg,
+      gui = 'none',
+    },
+    close_button_selected = {
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.item_selected_fg,
+      gui = 'none',
+    },
+    modified = {
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_fg,
+      gui = 'none',
+    },
+    modified_visible = {
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.item_visible_fg,
+      gui = 'none',
+    },
+    modified_selected = {
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.item_selected_fg,
       gui = 'none',
     },
     diagnostic = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Comment', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.base_fg,
       gui = 'none',
     },
     diagnostic_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
-      guifg = { attribute = 'fg', highlight = 'Conceal', },
+      guibg = colorscheme.item_bg,
+      guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },
     diagnostic_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
-      guifg = { attribute = 'fg', highlight = 'SpecialComment', },
+      guibg = colorscheme.item_selected_bg,
+      guifg = colorscheme.item_selected_fg,
       gui = 'none',
-      guisp = { attribute = 'fg', highlight = 'SpecialComment', },
+      guisp = colorscheme.item_selected_fg,
     },
     info = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Special', },
       gui = 'none',
     },
     info_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Special', },
       gui = 'none',
     },
     info_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
+      guibg = colorscheme.item_selected_bg,
       guifg = { attribute = 'fg', highlight = 'Special', },
       gui = 'none',
     },
     info_diagnostic = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Special', },
       gui = 'none',
     },
     info_diagnostic_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Special', },
       gui = 'none',
     },
     info_diagnostic_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
+      guibg = colorscheme.item_selected_bg,
       guifg = { attribute = 'fg', highlight = 'Special', },
       gui = 'none',
       guisp = { attribute = 'fg', highlight = 'Special', },
     },
     warning = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Label', },
       gui = 'none',
     },
     warning_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Label', },
       gui = 'none',
     },
     warning_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
+      guibg = colorscheme.item_selected_bg,
       guifg = { attribute = 'fg', highlight = 'Label', },
       gui = 'none',
     },
     warning_diagnostic = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Label', },
       gui = 'none',
     },
     warning_diagnostic_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Label', },
       gui = 'none',
     },
     warning_diagnostic_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
+      guibg = colorscheme.item_selected_bg,
       guifg = { attribute = 'fg', highlight = 'Label', },
       gui = 'none',
       guisp = { attribute = 'fg', highlight = 'Label', },
     },
     error = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Error', },
       gui = 'none',
     },
     error_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Error', },
       gui = 'none',
     },
     error_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
+      guibg = colorscheme.item_selected_bg,
       guifg = { attribute = 'fg', highlight = 'Error', },
       gui = 'none',
     },
     error_diagnostic = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Error', },
       gui = 'none',
     },
     error_diagnostic_visible = {
-      guibg = { attribute = 'bg', highlight = 'StatusLine', },
+      guibg = colorscheme.item_bg,
       guifg = { attribute = 'fg', highlight = 'Error', },
       gui = 'none',
     },
     error_diagnostic_selected = {
-      guibg = { attribute = 'bg', highlight = 'Normal', },
+      guibg = colorscheme.item_selected_bg,
       guifg = { attribute = 'fg', highlight = 'Error', },
       gui = 'none',
       guisp = { attribute = 'fg', highlight = 'Error', },

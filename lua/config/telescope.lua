@@ -11,7 +11,14 @@ local vimgrep_command = 'rg'
 
 if (vim.env.HOSTNAME == 'FDVMPRDLIN1') then
   -- Use local rg
-  local vimgrep_command = vim.env.HOME .. '/.local/bin/rg'
+  vimgrep_command = vim.env.HOME .. '/.local/bin/rg'
+
+  -- View source
+  vim.api.nvim_set_keymap(
+    'n', ' p',
+    [[ <cmd>lua require('telescope.builtin').find_files { search_dirs = { vim.loop.cwd(), '/data/source/' .. vim.env.BRANCH } }<CR> ]],
+    {noremap = true}
+  )
 
   -- Ubergrep
   vim.api.nvim_set_keymap(

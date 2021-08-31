@@ -1,5 +1,4 @@
 -- galaxyline.lua
---
 
 -- Configuration for 'glepnir/galaxyline.nvim'.
 
@@ -303,7 +302,6 @@ table.insert(gls.right, {
     provider = function()
       return '   '..left_separator
     end,
-    condition = require('galaxyline.condition').check_git_workspace,
     highlight = { colorscheme.secondary_bg, colorscheme.base_bg },
   }
 })

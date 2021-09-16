@@ -49,7 +49,7 @@ local colorscheme = {
 
 bufferline.setup {
   options = {
-    always_show_bufferline = false,
+    always_show_bufferline = vim.env.HOSTNAME == 'FDVMPRDLIN1',
     -- 'slant' | 'thick' | 'thin' | { 'any', 'any' },
     separator_style = 'thin',
     diagnostics = 'nvim_lsp',

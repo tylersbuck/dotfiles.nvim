@@ -124,9 +124,10 @@ local lua_settings = {
 -- yaml language server settings
 
 local yamlSchemas = vim.empty_dict()
-if (vim.env.HOSTNAME == 'FDVMPRDLIN1' and string.match(vim.env.PWD, '/tests/ggc$')) then
+local workspace_dir = '/data/tfs_workspaces/'..vim.env.USER..'/'..vim.env.BRANCH
+if (vim.env.HOSTNAME == 'FDVMPRDLIN1' and string.match(vim.loop.cwd(), '^'..workspace_dir)) then
   yamlSchemas = {
-    [vim.env.PWD .. '/testSpec.schema.jsonc'] = {'*.yml', '*.yaml'},
+    [workspace_dir..'/tests/ggc/testSpec.schema.jsonc'] = {'*.yml', '*.yaml'},
   }
 end
 

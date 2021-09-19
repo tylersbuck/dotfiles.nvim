@@ -193,7 +193,6 @@ return packer.startup(function()
   -- Git wrapper
   use {
     'tpope/vim-fugitive',
-    cmd = 'Git',
   }
 
   -- Git signs and hunk tools

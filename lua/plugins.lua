@@ -151,6 +151,9 @@ return packer.startup(function()
   -- L3MON4D3/LuaSnip
   -- mfussenegger/nvim-dap
 
+  -- Session wrapper
+  -- 'Shatur/neovim-session-manager'
+
   -- Terminal wrapper
   -- Others:
   --   'akinsho/nvim-toggleterm.lua'

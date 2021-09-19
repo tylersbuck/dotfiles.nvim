@@ -188,7 +188,6 @@ return packer.startup(function()
 
   -- Git -----------------------------------------------------------------------
 
-  -- 'lewis6991/gitsigns.nvim'
   -- 'TimUntersberger/neogit'?
 
   -- Git wrapper

@@ -136,17 +136,6 @@ return packer.startup(function()
     config = function() require('config.bufferline') end,
   }
 
-  -- Dashboard page
-  use {
-    'glepnir/dashboard-nvim',
-    cmd = {
-      'Dashboard',
-      'SessionLoad',
-      'SessionSave'
-    },
-    setup = function() require('config.dashboard') end,
-  }
-
   -- File tree
   --[[
   use {

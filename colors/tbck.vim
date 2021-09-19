@@ -239,6 +239,8 @@ call Hi("Typedef", s:gui["orange"], "", s:cterm["orange"], "", "none", "")
 "   TSTag {base.GruvboxOrange},
 "   TSTagDelimiter {base.GruvboxGreen},
 
+highlight link TSFuncBuiltin Function
+
 "}}}
 " Vim syntax {{{3
 

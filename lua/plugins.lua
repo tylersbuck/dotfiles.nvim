@@ -122,11 +122,10 @@ return packer.startup(function()
   }
 
   -- Status line
-  -- Also try: 'Famiu/feline.nvim'
   use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
-    config = function() require('config.galaxyline') end,
+    'famiu/feline.nvim',
+    tag = 'v0.1.1',
+    config = function() require('config.feline') end,
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
 

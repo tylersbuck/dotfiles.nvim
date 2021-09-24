@@ -61,25 +61,31 @@ local use = packer.use
 return packer.startup(function()
   -- Packer can manage itself
   -- TODO: Lazy-load packer on :Packer* commands?
-  use 'wbthomason/packer.nvim'
+  use {
+    'wbthomason/packer.nvim',
+    commit = '0a2d8cb',
+  }
 
   -- Shared --------------------------------------------------------------------
 
   -- Lua utilities
   use {
     'nvim-lua/plenary.nvim',
+    commit = '03ac32a',
   }
 
   -- Filetype icons
   -- NOTE: Requires nerd font to be installed on system
   use {
     'kyazdani42/nvim-web-devicons',
+    commit = 'be8bb70',
     config = function() require('config.web-devicons') end,
   }
 
   -- Allows plugins to repeat commands with '.'
   use {
     'tpope/vim-repeat',
+    commit = '24afe92',
   }
 
   -- General -------------------------------------------------------------------
@@ -87,18 +93,21 @@ return packer.startup(function()
   -- Change surrounding characters
   use {
     'tpope/vim-surround',
+    commit = 'f51a26d',
     requires = {{'tpope/vim-repeat'}},
   }
 
   -- Toggle comments
   use {
     'terrortylor/nvim-comment',
+    commit = '6363118',
     config = function() require('config.comment') end,
   }
 
   -- Sneak motion
   use {
     'ggandor/lightspeed.nvim',
+    commit = '93c37c1',
     requires = {{'tpope/vim-repeat'}},
     config = function() require('config.lightspeed') end,
   }
@@ -106,6 +115,7 @@ return packer.startup(function()
   -- Use .editorconfig files
   use {
     'editorconfig/editorconfig-vim',
+    tag = 'v1.1.1',
     config = function() require('config.editorconfig') end,
   }
 
@@ -118,6 +128,7 @@ return packer.startup(function()
   -- Indent guide
   use {
     'lukas-reineke/indent-blankline.nvim',
+    commit = 'ed04999',
     config = function() require('config.indent-blankline') end,
   }
 
@@ -132,6 +143,7 @@ return packer.startup(function()
   -- Buffer list
   use {
     'akinsho/bufferline.nvim',
+    commit = '94211ea',
     config = function() require('config.bufferline') end,
   }
 
@@ -159,6 +171,7 @@ return packer.startup(function()
   --   'vimlab/split-term.vim'
   use {
     'kassio/neoterm',
+    tag = 'v2.0.5',
     cmd = {'T', 'Topen', 'Texec'},
     config = function() require('config.neoterm') end,
   }
@@ -166,6 +179,7 @@ return packer.startup(function()
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
+    commit = '6066033',
     requires = {{'nvim-lua/plenary.nvim'}},
     config = function() require('config.telescope') end,
   }
@@ -176,6 +190,7 @@ return packer.startup(function()
   -- Parser for highlighting, etc
   use {
     'nvim-treesitter/nvim-treesitter',
+    commit = '6b3f908',
     ft = {
       'bash', 'css', 'dockerfile', 'go', 'html', 'javascript', 'json',
       'lua', 'rust', 'sh', 'scss', 'typescript', 'yaml',
@@ -195,11 +210,13 @@ return packer.startup(function()
   -- Git wrapper
   use {
     'tpope/vim-fugitive',
+    tag = 'v3.4',
   }
 
   -- Git signs and hunk tools
   use {
     'lewis6991/gitsigns.nvim',
+    tag = 'v0.2',
     requires = {'nvim-lua/plenary.nvim'},
     config = function() require('config.gitsigns') end,
   }
@@ -216,8 +233,9 @@ return packer.startup(function()
   -- LSP configuration
   use {
     'neovim/nvim-lspconfig',
+    commit = 'aa0b9fd',
     -- TODO: nvim-lspinstall for auto-install
-    --after = 'nvim-lspinstall',
+    -- after = 'nvim-lspinstall',
     ft = {'lua', 'yaml'},
     config = function() require('config.lspconfig') end,
   }
@@ -226,6 +244,7 @@ return packer.startup(function()
   -- DEPRECATED: Keep an eye on 'hrsh7th/nvim-cmp', compe's successor.
   use {
     'hrsh7th/nvim-compe',
+    commit = '980357a',
     ft = {'lua', 'yaml'},
     -- load compe in insert mode only
     event = 'InsertEnter',
@@ -250,6 +269,7 @@ return packer.startup(function()
   -- Icons for symbol types in autocomplete list
   use {
     'onsails/lspkind-nvim',
+    commit = '9cc3265',
     ft = {'lua', 'yaml'},
     config = function() require('config.lspkind') end,
   }

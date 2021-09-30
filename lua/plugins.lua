@@ -165,6 +165,11 @@ return packer.startup(function()
   -- Session wrapper
   -- 'Shatur/neovim-session-manager'
 
+  -- Database access
+  -- 'tpope/vim-dadbod'
+  -- 'kristijanhusak/vim-dadbod-ui'
+  -- 'kristijanhusak/vim-dadbod-completion'
+
   -- Terminal wrapper
   -- Others:
   --   'akinsho/nvim-toggleterm.lua'

@@ -41,7 +41,9 @@ local colorscheme = {
   base_bg = { attribute = 'bg', highlight = 'StatusLine', },
   base_fg = { attribute = 'fg', highlight = 'MsgArea', },
   weak_fg = { attribute = 'fg', highlight = 'Comment', },
-  item_bg = { attribute = 'bg', highlight = 'Pmenu', },
+  item_bg = { attribute = 'bg', highlight = 'StatusLine', },
+  item_fg = { attribute = 'fg', highlight = 'MsgArea', },
+  item_visible_bg = { attribute = 'bg', highlight = 'Pmenu', },
   item_visible_fg = { attribute = 'fg', highlight = 'Conceal', },
   item_selected_bg = { attribute = 'bg', highlight = 'PmenuSel', },
   item_selected_fg = { attribute = 'fg', highlight = 'PmenuSel', },
@@ -51,7 +53,7 @@ bufferline.setup {
   options = {
     always_show_bufferline = vim.env.HOSTNAME == 'FDVMPRDLIN1',
     -- 'slant' | 'thick' | 'thin' | { 'any', 'any' },
-    separator_style = 'thin',
+    separator_style = { '', '' },
     diagnostics = 'nvim_lsp',
     -- count is an integer representing total count of errors
     -- level is a string 'error' | 'warning'
@@ -145,7 +147,7 @@ bufferline.setup {
     },
     tab = {
       guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_fg,
+      guifg = colorscheme.item_fg,
       gui = 'none',
     },
     tab_selected = {
@@ -154,18 +156,18 @@ bufferline.setup {
       gui = 'none',
     },
     tab_close = {
-      guibg = colorscheme.base_bg,
-      guifg = colorscheme.base_fg,
+      guibg = colorscheme.item_visible_bg,
+      guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },
     -- buffer
     background = {
       guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_fg,
+      guifg = colorscheme.item_fg,
       gui = 'none',
     },
     buffer_visible = {
-      guibg = colorscheme.item_bg,
+      guibg = colorscheme.item_visible_bg,
       guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },
@@ -181,26 +183,26 @@ bufferline.setup {
     },
     separator = {
       guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_bg,
+      guifg = colorscheme.item_bg,
       gui = 'none',
     },
     separator_selected = {
       guibg = colorscheme.item_selected_bg,
-      guifg = colorscheme.base_bg,
+      guifg = colorscheme.item_selected_bg,
       gui = 'none',
     },
     separator_visible = {
-      guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_bg,
+      guibg = colorscheme.item_visible_bg,
+      guifg = colorscheme.item_visible_bg,
       gui = 'none',
     },
     close_button = {
       guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_fg,
+      guifg = colorscheme.item_fg,
       gui = 'none',
     },
     close_button_visible = {
-      guibg = colorscheme.item_bg,
+      guibg = colorscheme.item_visible_bg,
       guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },
@@ -211,11 +213,11 @@ bufferline.setup {
     },
     modified = {
       guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_fg,
+      guifg = colorscheme.item_fg,
       gui = 'none',
     },
     modified_visible = {
-      guibg = colorscheme.item_bg,
+      guibg = colorscheme.item_visible_bg,
       guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },
@@ -226,11 +228,11 @@ bufferline.setup {
     },
     diagnostic = {
       guibg = colorscheme.item_bg,
-      guifg = colorscheme.base_fg,
+      guifg = colorscheme.item_fg,
       gui = 'none',
     },
     diagnostic_visible = {
-      guibg = colorscheme.item_bg,
+      guibg = colorscheme.item_visible_bg,
       guifg = colorscheme.item_visible_fg,
       gui = 'none',
     },

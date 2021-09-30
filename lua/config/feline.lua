@@ -32,7 +32,7 @@ local icon_warning = ''
 
 -- TODO: Use feline's builtin colorscheme definition?
 local colorscheme = {
-  base_bg = colors.black1,
+  base_bg = colors.black2,
   base_fg = colors.gray5,
   weak_fg = colors.gray4,
   primary_bg = colors.black0,

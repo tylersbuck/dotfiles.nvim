@@ -351,11 +351,14 @@ highlight link TermCursor Cursor
 highlight link lCursor Cursor
 
 " Status line
-call Hi("StatusLine", s:gui["gray4"], s:gui["black1"], s:cterm["gray4"], s:cterm["black1"], "none", "")
-call Hi("StatusLineNC", s:gui["black1"], "", s:cterm["black1"], "", "strikethrough", "")
-" call Hi("StatusLineNC", s:gui["black1"], "", s:cterm["black1"], "", "underline", "")
-call Hi("StatusLineTerm", s:gui["gray4"], s:gui["black1"], s:cterm["gray4"], s:cterm["black1"], "none", "")
-call Hi("StatusLineTermNC", s:gui["gray4"], s:gui["black1"], s:cterm["gray4"], s:cterm["black1"], "none", "")
+let s:statusbg = "black2"
+let s:statusfg = "gray4"
+call Hi("StatusLine", s:gui[s:statusfg], s:gui[s:statusbg], s:cterm[s:statusfg], s:cterm[s:statusbg], "none", "")
+call Hi("StatusLineNC", s:gui[s:statusbg], "", s:cterm[s:statusbg], "", "strikethrough", "")
+" call Hi("StatusLineNC", s:gui[s:statusbg], "", s:cterm[s:statusbg], "", "underline", "")
+call Hi("StatusLineTerm", s:gui[s:statusfg], s:gui[s:statusbg], s:cterm[s:statusfg], s:cterm[s:statusbg], "none", "")
+call Hi("StatusLineTermNC", s:gui[s:statusfg], s:gui[s:statusbg], s:cterm[s:statusfg], s:cterm[s:statusbg], "none", "")
+unlet s:statusbg s:statusfg
 
 " Invert selected lines in visual mode
 call Hi("Visual", "none", s:gui["gray0"], "none", s:cterm["gray0"], "none", "")

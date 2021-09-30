@@ -191,13 +191,8 @@ return packer.startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     commit = '6b3f908',
-    ft = {
-      'bash', 'css', 'dockerfile', 'go', 'html', 'javascript', 'json',
-      'lua', 'rust', 'sh', 'scss', 'typescript', 'yaml',
-    },
     -- Update parsers when treesitter is installed or updated
     run = ':TSUpdateSync',
-    cmd = {'TSUpdate', 'TSUpdateSync'},
     config = function() require('config.treesitter') end,
   }
 

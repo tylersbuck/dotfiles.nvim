@@ -452,25 +452,29 @@ call Hi("NvimInternalError", s:gui["red"], s:gui["red"], s:cterm["red"], s:cterm
 "}}}
 " LSP {{{3
 
-let s:hintcolor = "magenta"
-let s:infocolor = "cyan"
-let s:warncolor = "orange"
 let s:errorcolor = "red"
+let s:warncolor = "orange"
+let s:infocolor = "cyan"
+let s:hintcolor = "magenta"
 
-call Hi("LspDiagnosticsDefaultHint", s:gui["magenta"], "", s:cterm["magenta"], "", "", "")
-call Hi("LspDiagnosticsDefaultInformation", s:gui["cyan"], "", s:cterm["cyan"], "", "", "")
+call Hi("LspDiagnosticsDefaultError", s:gui[s:errorcolor], "", s:cterm[s:errorcolor], "", "", "")
 call Hi("LspDiagnosticsDefaultWarning", s:gui[s:warncolor], "", s:cterm[s:warncolor], "", "", "")
-call Hi("LspDiagnosticsDefaultError", s:gui["red"], "", s:cterm["red"], "", "", "")
+call Hi("LspDiagnosticsDefaultInformation", s:gui[s:infocolor], "", s:cterm[s:infocolor], "", "", "")
+call Hi("LspDiagnosticsDefaultHint", s:gui[s:hintcolor], "", s:cterm[s:hintcolor], "", "", "")
 
-call Hi("LspDiagnosticsUnderlineHint", "", "", "", "", "undercurl", s:gui["magenta"])
-call Hi("LspDiagnosticsUnderlineInformation", "", "", "", "", "undercurl", s:gui["cyan"])
+call Hi("LspDiagnosticsUnderlineError", "", "", "", "", "undercurl", s:gui[s:errorcolor])
 call Hi("LspDiagnosticsUnderlineWarning", "", "", "", "", "undercurl", s:gui[s:warncolor])
-call Hi("LspDiagnosticsUnderlineError", "", "", "", "", "undercurl", s:gui["red"])
+call Hi("LspDiagnosticsUnderlineInformation", "", "", "", "", "undercurl", s:gui[s:infocolor])
+call Hi("LspDiagnosticsUnderlineHint", "", "", "", "", "undercurl", s:gui[s:hintcolor])
+call Hi("DiagnosticUnderlineError", "", "", "", "", "undercurl", s:gui[s:errorcolor])
+call Hi("DiagnosticUnderlineWarn", "", "", "", "", "undercurl", s:gui[s:warncolor])
+call Hi("DiagnosticUnderlineInfo", "", "", "", "", "undercurl", s:gui[s:infocolor])
+call Hi("DiagnosticUnderlineHint", "", "", "", "", "undercurl", s:gui[s:hintcolor])
 
-highlight link LspDiagnosticsVirtualTextHint LspDiagnosticsDefaultHint
-highlight link LspDiagnosticsVirtualTextInformation LspDiagnosticsDefaultInformation
-highlight link LspDiagnosticsVirtualTextWarning LspDiagnosticsDefaultWarning
 highlight link LspDiagnosticsVirtualTextError LspDiagnosticsDefaultError
+highlight link LspDiagnosticsVirtualTextWarning LspDiagnosticsDefaultWarning
+highlight link LspDiagnosticsVirtualTextInformation LspDiagnosticsDefaultInformation
+highlight link LspDiagnosticsVirtualTextHint LspDiagnosticsDefaultHint
 
 "highlight link LspReferenceText CursorLine
 call Hi("LspReferenceText", "", s:gui["gray2"], "", s:cterm["gray2"], "", "")

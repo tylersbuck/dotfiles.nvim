@@ -128,7 +128,7 @@ return packer.startup(function()
   -- Indent guide
   use {
     'lukas-reineke/indent-blankline.nvim',
-    commit = 'ed04999',
+    commit = 'a5c8b55',
     config = function() require('config.indent-blankline') end,
   }
 
@@ -195,7 +195,7 @@ return packer.startup(function()
   -- Parser for highlighting, etc
   use {
     'nvim-treesitter/nvim-treesitter',
-    commit = '6b3f908',
+    commit = '3a92d77',
     -- Update parsers when treesitter is installed or updated
     run = ':TSUpdateSync',
     config = function() require('config.treesitter') end,

@@ -27,9 +27,6 @@
 -- Loads opt plugin immediately
 --   :PackerLoad completion-nvim ale
 
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
 -- Bootstrap packer ------------------------------------------------------------
 
 -- Install packer.nvim if not already installed
@@ -38,12 +35,12 @@ local fn = vim.fn
 -- operations are completed:
 --   nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
-if fn.empty(fn.glob(install_path)) > 0 then
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_echo({{'Installing packer.nvim ...', 'Type'}}, true, {})
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  execute 'packadd packer.nvim'
+  vim.fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.api.nvim_command('packadd packer.nvim')
   -- TODO: initial PackerSync / PackerInstall / PackerCompile ?
 end
 
@@ -158,9 +155,9 @@ return packer.startup(function()
 
   -- Extra functionality -------------------------------------------------------
 
-  -- sbdchd/neoformat
-  -- L3MON4D3/LuaSnip
-  -- mfussenegger/nvim-dap
+  -- 'sbdchd/neoformat'
+  -- 'L3MON4D3/LuaSnip'
+  -- 'mfussenegger/nvim-dap'
 
   -- Session wrapper
   -- 'Shatur/neovim-session-manager'
@@ -201,7 +198,7 @@ return packer.startup(function()
     config = function() require('config.treesitter') end,
   }
 
-  -- romgrk/nvim-treesitter-context?
+  -- 'romgrk/nvim-treesitter-context'?
 
   -- Git -----------------------------------------------------------------------
 
@@ -223,12 +220,12 @@ return packer.startup(function()
 
   -- LSP -----------------------------------------------------------------------
 
-  -- windwp/nvim-autopairs
-  -- nvim-lua/lsp-status.nvim?
-  -- glepnir/lspsaga.nvim?
-  -- kosayoda/nvim-lightbulb (lspsaga has lightbulb?)
-  -- ray-x/lsp_signature.nvim (lspsaga has sig help?)
-  -- folke/trouble.nvim?
+  -- 'windwp/nvim-autopairs'
+  -- 'nvim-lua/lsp-status.nvim'?
+  -- 'glepnir/lspsaga.nvim'? (no longer maintained, look for fork)
+  -- 'kosayoda/nvim-lightbulb' (lspsaga has lightbulb?)
+  -- 'ray-x/lsp_signature.nvim' (lspsaga has sig help?)
+  -- 'folke/trouble.nvim'?
 
   -- LSP configuration
   use {

@@ -60,7 +60,7 @@ return packer.startup(function()
   -- TODO: Lazy-load packer on :Packer* commands?
   use {
     'wbthomason/packer.nvim',
-    commit = '0a2d8cb',
+    commit = '0a2d8cbaa2045bdf3797af7a5abb2d42d0edecb0',
   }
 
   -- Shared --------------------------------------------------------------------
@@ -68,21 +68,21 @@ return packer.startup(function()
   -- Lua utilities
   use {
     'nvim-lua/plenary.nvim',
-    commit = '03ac32a',
+    commit = '03ac32af651bb33acfc4ce20d5cb51bf5a424aa1',
   }
 
   -- Filetype icons
   -- NOTE: Requires nerd font to be installed on system
   use {
     'kyazdani42/nvim-web-devicons',
-    commit = 'be8bb70',
+    commit = '9ed2037df0ee87d0d6c084187d1e340b4eac7587',
     config = function() require('config.web-devicons') end,
   }
 
   -- Allows plugins to repeat commands with '.'
   use {
     'tpope/vim-repeat',
-    commit = '24afe92',
+    commit = '24afe922e6a05891756ecf331f39a1f6743d3d5a',
   }
 
   -- General -------------------------------------------------------------------
@@ -90,21 +90,21 @@ return packer.startup(function()
   -- Change surrounding characters
   use {
     'tpope/vim-surround',
-    commit = 'f51a26d',
+    commit = 'f51a26d3710629d031806305b6c8727189cd1935',
     requires = {{'tpope/vim-repeat'}},
   }
 
   -- Toggle comments
   use {
     'terrortylor/nvim-comment',
-    commit = '6363118',
+    commit = '6363118acf86824ed11c2238292b72dc5ef8bdde',
     config = function() require('config.comment') end,
   }
 
   -- Sneak motion
   use {
     'ggandor/lightspeed.nvim',
-    commit = '93c37c1',
+    commit = '9340b1bb6ec9f92939a323889200e3032f8ed6fe',
     requires = {{'tpope/vim-repeat'}},
     config = function() require('config.lightspeed') end,
   }
@@ -125,7 +125,7 @@ return packer.startup(function()
   -- Indent guide
   use {
     'lukas-reineke/indent-blankline.nvim',
-    commit = 'a5c8b55',
+    commit = '948b6ac3303b9e2e75daad0bd0ec844ed6b06d4a',
     config = function() require('config.indent-blankline') end,
   }
 
@@ -140,7 +140,7 @@ return packer.startup(function()
   -- Buffer list
   use {
     'akinsho/bufferline.nvim',
-    commit = '94211ea',
+    commit = '5fb90051aa17a840b0bcdbff0055ea83d6ad9f59',
     config = function() require('config.bufferline') end,
   }
 
@@ -173,7 +173,7 @@ return packer.startup(function()
   --   'vimlab/split-term.vim'
   use {
     'kassio/neoterm',
-    tag = 'v2.0.5',
+    commit = 'e78179a9ceb98de8d0c37bdda435a5deab4d5e71',
     cmd = {'T', 'Topen', 'Texec'},
     config = function() require('config.neoterm') end,
   }
@@ -181,18 +181,25 @@ return packer.startup(function()
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
-    commit = '6066033',
-    requires = {{'nvim-lua/plenary.nvim'}},
+    commit = 'ec6c13fc092fe8447df77e35013df907a6f3761e',
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      --[[
+      {
+        'nvim-telescope/telescope-fzf-native',
+        commit = '',
+        run = 'make',
+      },
+      --]]
+      -- 'nvim-telescope/telescope-frecency.nvim'?
+    },
     config = function() require('config.telescope') end,
   }
-
-  -- 'nvim-telescope/telescope-frecency.nvim'?
-  -- 'nvim-telescope/telescope-fzf-native.nvim'?
 
   -- Parser for highlighting, etc
   use {
     'nvim-treesitter/nvim-treesitter',
-    commit = '3a92d77',
+    branch = '0.5-compat',
     -- Update parsers when treesitter is installed or updated
     run = ':TSUpdateSync',
     config = function() require('config.treesitter') end,
@@ -230,7 +237,7 @@ return packer.startup(function()
   -- LSP configuration
   use {
     'neovim/nvim-lspconfig',
-    commit = 'aa0b9fd',
+    commit = '66659884c36dadd1f445f9012fcf4e7600286d3e',
     -- TODO: nvim-lspinstall for auto-install
     -- after = 'nvim-lspinstall',
     ft = {'lua', 'yaml'},
@@ -241,7 +248,7 @@ return packer.startup(function()
   -- DEPRECATED: Keep an eye on 'hrsh7th/nvim-cmp', compe's successor.
   use {
     'hrsh7th/nvim-compe',
-    commit = '980357a',
+    commit = 'd186d739c54823e0b010feb205c6f97792322c08',
     ft = {'lua', 'yaml'},
     -- load compe in insert mode only
     event = 'InsertEnter',
@@ -266,7 +273,7 @@ return packer.startup(function()
   -- Icons for symbol types in autocomplete list
   use {
     'onsails/lspkind-nvim',
-    commit = '9cc3265',
+    commit = '0df591f3001d8c58b7d71a8dc7e006b8cea4959d',
     ft = {'lua', 'yaml'},
     config = function() require('config.lspkind') end,
   }

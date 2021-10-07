@@ -184,13 +184,11 @@ return packer.startup(function()
     commit = 'ec6c13fc092fe8447df77e35013df907a6f3761e',
     requires = {
       {'nvim-lua/plenary.nvim'},
-      --[[
       {
-        'nvim-telescope/telescope-fzf-native',
-        commit = '',
+        'nvim-telescope/telescope-fzf-native.nvim',
+        commit = '59e38e1661ffdd586cb7fc22ca0b5a05c7caf988',
         run = 'make',
       },
-      --]]
       -- 'nvim-telescope/telescope-frecency.nvim'?
     },
     config = function() require('config.telescope') end,

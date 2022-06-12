@@ -229,6 +229,7 @@ return packer.startup(function(use)
   -- 'ray-x/lsp_signature.nvim' (lspsaga has sig help?)
   -- 'folke/trouble.nvim'?
 
+  --[[
   -- LSP configuration
   use {
     'neovim/nvim-lspconfig',
@@ -248,22 +249,8 @@ return packer.startup(function(use)
     -- load compe in insert mode only
     event = 'InsertEnter',
     config = function() require('config.compe') end,
-    --[[
-    wants = 'LuaSnip',
-    requires = {
-      {
-        'L3MON4D3/LuaSnip',
-        wants = 'friendly-snippets',
-        event = 'InsertCharPre',
-        config = function() require 'plugins.luasnip' end,
-      },
-      {
-        'rafamadriz/friendly-snippets',
-        event = 'InsertCharPre'
-      }
-    }
-    --]]
   }
+  --]]
 
   -- Icons for symbol types in autocomplete list
   use {
@@ -276,9 +263,9 @@ return packer.startup(function(use)
   -- Language specific ---------------------------------------------------------
 
   -- 'fatih/vim-go'
-  
+
   -- Packer ---------------------------------------------------------
-  
+
   -- Do an initial sync if packer was just bootstrapped
   -- Must be at the end of packer startup - after all plugins
   if packer_bootstrap then

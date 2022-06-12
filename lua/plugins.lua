@@ -39,28 +39,25 @@ local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvi
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_echo({{'Installing packer.nvim ...', 'Type'}}, true, {})
-  vim.fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.api.nvim_command('packadd packer.nvim')
-  -- TODO: initial PackerSync / PackerInstall / PackerCompile ?
+  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 local packer = require('packer')
-local use = packer.use
 
 -- Configure packer ------------------------------------------------------------
 
--- Using packadd is only required if you have packer configured as `opt` (and
--- packer is not managing itself?).
+-- Using packadd is only required if you have packer configured as `opt`
 -- vim.cmd [[packadd packer.nvim]]
+-- vim.api.nvim_command('packadd packer.nvim')
 
 -- https://github.com/rockerBOO/awesome-neovim
 
-return packer.startup(function()
+return packer.startup(function(use)
   -- Packer can manage itself
   -- TODO: Lazy-load packer on :Packer* commands?
   use {
     'wbthomason/packer.nvim',
-    commit = '0a2d8cbaa2045bdf3797af7a5abb2d42d0edecb0',
+    commit = '4dedd3b08f8c6e3f84afbce0c23b66320cd2a8f2',
   }
 
   -- Shared --------------------------------------------------------------------
@@ -279,6 +276,14 @@ return packer.startup(function()
   -- Language specific ---------------------------------------------------------
 
   -- 'fatih/vim-go'
+  
+  -- Packer ---------------------------------------------------------
+  
+  -- Do an initial sync if packer was just bootstrapped
+  -- Must be at the end of packer startup - after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
 end)
 

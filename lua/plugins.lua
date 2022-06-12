@@ -40,15 +40,12 @@ local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvi
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_echo({{'Installing packer.nvim ...', 'Type'}}, true, {})
   packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.api.nvim_command('packadd packer.nvim')
 end
 
 local packer = require('packer')
 
 -- Configure packer ------------------------------------------------------------
-
--- Using packadd is only required if you have packer configured as `opt`
--- vim.cmd [[packadd packer.nvim]]
--- vim.api.nvim_command('packadd packer.nvim')
 
 -- https://github.com/rockerBOO/awesome-neovim
 
@@ -65,14 +62,14 @@ return packer.startup(function(use)
   -- Lua utilities
   use {
     'nvim-lua/plenary.nvim',
-    commit = '03ac32af651bb33acfc4ce20d5cb51bf5a424aa1',
+    commit = '9c3239bc5f99b85be1123107f7290d16a68f8e64',
   }
 
   -- Filetype icons
   -- NOTE: Requires nerd font to be installed on system
   use {
     'kyazdani42/nvim-web-devicons',
-    commit = '9ed2037df0ee87d0d6c084187d1e340b4eac7587',
+    commit = '8d2c5337f0a2d0a17de8e751876eeb192b32310e',
     config = function() require('config.web-devicons') end,
   }
 
@@ -87,21 +84,22 @@ return packer.startup(function(use)
   -- Change surrounding characters
   use {
     'tpope/vim-surround',
-    commit = 'f51a26d3710629d031806305b6c8727189cd1935',
+    commit = 'bf3480dc9ae7bea34c78fbba4c65b4548b5b1fea',
     requires = {{'tpope/vim-repeat'}},
   }
 
   -- Toggle comments
   use {
     'terrortylor/nvim-comment',
-    commit = '6363118acf86824ed11c2238292b72dc5ef8bdde',
+    commit = '0cd8228cddf40c86185059607a1469ab32c497d2',
     config = function() require('config.comment') end,
   }
 
   -- Sneak motion
+  -- TODO: Try successor: https://github.com/ggandor/leap.nvim
   use {
     'ggandor/lightspeed.nvim',
-    commit = '9340b1bb6ec9f92939a323889200e3032f8ed6fe',
+    commit = 'c5b93fc1d76a708cb698417326e04f4786a38d90',
     requires = {{'tpope/vim-repeat'}},
     config = function() require('config.lightspeed') end,
   }
@@ -122,14 +120,14 @@ return packer.startup(function(use)
   -- Indent guide
   use {
     'lukas-reineke/indent-blankline.nvim',
-    commit = '948b6ac3303b9e2e75daad0bd0ec844ed6b06d4a',
+    tag = 'v2.18.4',
     config = function() require('config.indent-blankline') end,
   }
 
   -- Status line
   use {
     'famiu/feline.nvim',
-    tag = 'v0.1.1',
+    tag = 'v1.1.3',
     config = function() require('config.feline') end,
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
@@ -137,18 +135,9 @@ return packer.startup(function(use)
   -- Buffer list
   use {
     'akinsho/bufferline.nvim',
-    commit = '5fb90051aa17a840b0bcdbff0055ea83d6ad9f59',
+    tag = 'v2.2.1',
     config = function() require('config.bufferline') end,
   }
-
-  -- File tree
-  --[[
-  use {
-    'kyazdani42/nvim-tree.lua',
-    cmd = 'NvimTreeToggle',
-    config = function() require('plugins.nvimtree') end
-  }
-  --]]
 
   -- Extra functionality -------------------------------------------------------
 
@@ -170,15 +159,16 @@ return packer.startup(function(use)
   --   'vimlab/split-term.vim'
   use {
     'kassio/neoterm',
-    commit = 'e78179a9ceb98de8d0c37bdda435a5deab4d5e71',
+    commit = '4881d6428bcaa524ad4686431ce184c6fb9bfe59',
     cmd = {'T', 'Topen', 'Texec'},
     config = function() require('config.neoterm') end,
   }
 
   -- Fuzzy finder
+  --[[
   use {
     'nvim-telescope/telescope.nvim',
-    commit = 'ec6c13fc092fe8447df77e35013df907a6f3761e',
+    commit = 'e6b69b1488c598ff7b461c4d9cecad57ef708f9b',
     requires = {
       {'nvim-lua/plenary.nvim'},
       {
@@ -194,11 +184,12 @@ return packer.startup(function(use)
   -- Parser for highlighting, etc
   use {
     'nvim-treesitter/nvim-treesitter',
-    branch = '0.5-compat',
+    commit = '9e8df1b3ca576eeaca4e8d48e3d67119b32adb99',
     -- Update parsers when treesitter is installed or updated
     run = ':TSUpdateSync',
     config = function() require('config.treesitter') end,
   }
+  --]]
 
   -- 'romgrk/nvim-treesitter-context'?
 
@@ -209,13 +200,13 @@ return packer.startup(function(use)
   -- Git wrapper
   use {
     'tpope/vim-fugitive',
-    tag = 'v3.4',
+    tag = 'v3.7',
   }
 
   -- Git signs and hunk tools
   use {
     'lewis6991/gitsigns.nvim',
-    tag = 'v0.2',
+    tag = 'v0.4',
     requires = {'nvim-lua/plenary.nvim'},
     config = function() require('config.gitsigns') end,
   }
@@ -250,7 +241,6 @@ return packer.startup(function(use)
     event = 'InsertEnter',
     config = function() require('config.compe') end,
   }
-  --]]
 
   -- Icons for symbol types in autocomplete list
   use {
@@ -259,6 +249,7 @@ return packer.startup(function(use)
     ft = {'lua', 'yaml'},
     config = function() require('config.lspkind') end,
   }
+  --]]
 
   -- Language specific ---------------------------------------------------------
 

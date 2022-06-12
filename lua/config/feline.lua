@@ -162,7 +162,7 @@ table.insert(components.active[ACTIVE_LEFT_INDEX], {
 
 -- LSP status
 table.insert(components.active[ACTIVE_RIGHT_INDEX], {
-  provider = function(winid)
+  provider = function(_, winid)
     local has_client = provider_lsp.has_active_client_for_filetype(winid)
     if (not has_client) then
       return ''
@@ -194,7 +194,7 @@ table.insert(components.active[ACTIVE_RIGHT_INDEX], {
 
 -- Diff added
 table.insert(components.active[ACTIVE_RIGHT_INDEX], {
-  provider = function(winid)
+  provider = function(_, winid)
     local added_count = provider_git.diff_added(winid)
     if (added_count > 0) then
       return '  ' .. added_count .. ' '
@@ -213,7 +213,7 @@ table.insert(components.active[ACTIVE_RIGHT_INDEX], {
 
 -- Diff changed
 table.insert(components.active[ACTIVE_RIGHT_INDEX], {
-  provider = function(winid)
+  provider = function(_, winid)
     local changed_count = provider_git.diff_changed(winid)
     if (changed_count > 0) then
       return '  ' .. changed_count .. ' '
@@ -232,7 +232,7 @@ table.insert(components.active[ACTIVE_RIGHT_INDEX], {
 
 -- Diff removed
 table.insert(components.active[ACTIVE_RIGHT_INDEX], {
-  provider = function(winid)
+  provider = function(_, winid)
     local removed_count = provider_git.diff_removed(winid)
     if (removed_count > 0) then
       return '  ' .. removed_count .. ' '
@@ -251,7 +251,7 @@ table.insert(components.active[ACTIVE_RIGHT_INDEX], {
 
 -- Git branch name
 table.insert(components.active[ACTIVE_RIGHT_INDEX], {
-  provider = function(winid)
+  provider = function(_, winid)
     return '  ' .. provider_git.branch_name(winid) .. ' '
   end,
   enabled = function(winid)
@@ -333,22 +333,22 @@ components.inactive = {
 
 feline.setup({
   components = components,
-  colors = {
+  theme = {
     fg = colorscheme.base_fg,
     bg = colorscheme.base_bg,
   },
   force_inactive = {
     filetypes = {
-        'NvimTree',
-        'packer',
-        'startify',
-        'fugitive',
-        'fugitiveblame',
-        'qf',
-        'help'
+        '^NvimTree$',
+        '^packer$',
+        '^startify$',
+        '^fugitive$',
+        '^fugitiveblame$',
+        '^qf$',
+        '^help$'
     },
     buftypes = {
-        'terminal'
+        '^terminal$'
     },
     bufnames = {},
   },

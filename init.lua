@@ -245,4 +245,18 @@ opt.updatetime = 500
 
 --}}}
 ---------------------------------------------------------------------------------
+vim.cmd [[
+  let generofiles=expand($FGLDIR . "/vimfiles/syntax")
+  if isdirectory(generofiles)
+    let &rtp=generofiles.','.&rtp
+  endif
+
+  autocmd BufNewFile,BufRead *.per setlocal filetype=per
+
+  let fgl_ignore_case=1
+
+  set noendofline
+  set nofixendofline
+]]
+---------------------------------------------------------------------------------
 -- vim:foldmethod=marker
